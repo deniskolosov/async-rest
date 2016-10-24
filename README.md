@@ -15,6 +15,41 @@ $ python server.py --port=<port_number>
 
 default port number is `:8080`
 
+Now you can use curl or your web browser to `GET` API methods.
+Note you have to provide `username` query parameter.
+
+### Example:
+```
+http://localhost:8080/api/ping?&server=google.com&ping_count=1&username=denis
+```
+
+will result in
+
+```
+{"result": [{"try": 1, "ret_code": 0}]}
+```
+
+
+```
+http://localhost:8080/api/primes/42?username=denis
+```
+
+will result in
+
+```
+{"result": 181}
+```
+
+```
+http://localhost:8080/api/factorize/57543?username=denis
+```
+
+will result in
+
+```
+{"result": [3, 19181]}
+```
+
 ###Rest API methods:
 
 **Compute prime**

@@ -16,12 +16,22 @@ class BaseHandler(tornado.web.RequestHandler):
         return self.get_secure_cookie("user_name")
 
     def write_error(self, status_code, **kwargs):
-
         self.set_header('Content-Type', 'text/json')
         self.finish(json.dumps({
             'error': {
                 'code': status_code,
                 'message': self._reason,
+            }
+        }))
+
+
+class NotFoundHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.set_header('Content-Type', 'text/json')
+        self.finish(json.dumps({
+            'error': {
+                'code': 404,
+                'message': "Not found",
             }
         }))
 
@@ -147,7 +157,8 @@ def make_app():
     handlers = [
         (r"/api/primes/([0-9]+)", PrimesHandler),
         (r"/api/factorize/([0-9]+)", FactorizeHandler),
-        (r"/api/ping/?", PingHandler)
+        (r"/api/ping/?", PingHandler),
+        (r"/.*", NotFoundHandler),
     ]
     cookie_secret = "secret"
     return tornado.web.Application(handlers, cookie_secret=cookie_secret)
