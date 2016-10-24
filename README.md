@@ -70,7 +70,7 @@ Can asynchronously compute primes, factorize numbers and ping servers.
 * **Error Response:**
 
   * **Code:** 400: Bad Request <br />
-    **Content:** `{ error : "Please, provide a username param." }`
+    **Content:** `{"error": {"message": "Bad Request", "code": 400}}`
     
     
 **Ping server**
@@ -105,4 +105,4 @@ Can asynchronously compute primes, factorize numbers and ping servers.
 * **Error Response:**
 
   * **Code:** 400: Bad Request <br />
-    **Content:** `{ error : "Please, provide a username param." }`
+    **Content:** `{"error": {"message": "Bad Request", "code": 400}}`

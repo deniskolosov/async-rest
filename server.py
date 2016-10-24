@@ -1,3 +1,4 @@
+import json
 import os
 import subprocess
 from concurrent.futures.thread import ThreadPoolExecutor
@@ -12,6 +13,16 @@ thread_pool = ThreadPoolExecutor()
 class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
         return self.get_secure_cookie("user_name")
+
+    def write_error(self, status_code, **kwargs):
+
+        self.set_header('Content-Type', 'text/json')
+        self.finish(json.dumps({
+            'error': {
+                'code': status_code,
+                'message': self._reason,
+            }
+        }))
 
 
 class PrimesHandler(BaseHandler):
