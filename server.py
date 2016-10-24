@@ -3,6 +3,7 @@ import os
 import subprocess
 from concurrent.futures.thread import ThreadPoolExecutor
 
+from tornado.options import define, options
 from tornado import gen
 from tornado.ioloop import IOLoop
 import tornado.web
@@ -152,10 +153,12 @@ def make_app():
     return tornado.web.Application(handlers, cookie_secret=cookie_secret)
 
 
-
 def main():
+    define("port", default="8080", help="Web server port")
+    options.parse_command_line()
     app = make_app()
-    app.listen(8080)
+    print("Starting web server at :%s" % options.port)
+    app.listen(options.port)
     IOLoop.current().start()
 
 

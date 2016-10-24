@@ -3,6 +3,20 @@ Tornado REST API web server example.
 
 Can asynchronously compute primes, factorize numbers and ping servers.
 
+###Install requirements
+``` bash
+$ pip install -r requirements.txt
+```
+
+###Run server
+``` bash
+$ python server.py --port=<port_number>
+```
+
+default port number is `:8080`
+
+###Rest API methods:
+
 **Compute prime**
 ----
  Computes n-th prime number
