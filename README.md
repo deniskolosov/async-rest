@@ -1,5 +1,7 @@
 # async-rest
-Tornado REST API web server example
+Tornado REST API web server example.
+
+Can asynchronously compute primes, factorize numbers and ping servers.
 
 **Compute prime**
 ----
